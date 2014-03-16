@@ -1,8 +1,8 @@
-function Grid(size, disableCells) {
+function Grid(size, disabledCells) {
   this.size = size;
 
   this.cells = [];
-  this.disableCells = disableCells || []
+  this.disabledCells = disabledCells || []
 
   this.build();
 }
@@ -20,8 +20,8 @@ Grid.prototype.build = function () {
 
 // Cell is disabled
 Grid.prototype.cellEnable = function (cell) {
-  return this.disableCells.every(function (disableCell) {
-    return disableCell.x !== cell.x || disableCell.y !== cell.y;
+  return this.disabledCells.every(function (disabledCell) {
+    return disabledCell.x !== cell.x || disabledCell.y !== cell.y;
   });
 };
 
