@@ -1,4 +1,5 @@
 function HTMLActuator() {
+  this.gridContainer    = document.querySelector(".grid-container");
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
@@ -13,6 +14,13 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
   window.requestAnimationFrame(function () {
     self.clearContainer(self.tileContainer);
+
+    grid.disabledCells.forEach(function (disabledCell) {
+      self.gridContainer
+        .children[disabledCell.y]
+        .children[disabledCell.x]
+        .classList.add('grid-disable')
+    });
 
     grid.cells.forEach(function (column) {
       column.forEach(function (cell) {
