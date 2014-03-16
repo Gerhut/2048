@@ -1,5 +1,6 @@
-function GameManager(size, InputManager, Actuator, ScoreManager) {
+function GameManager(size, disabledCells, InputManager, Actuator, ScoreManager) {
   this.size         = size; // Size of the grid
+  this.disabledCells= disabledCells;
   this.inputManager = new InputManager;
   this.scoreManager = new ScoreManager;
   this.actuator     = new Actuator;
@@ -35,7 +36,7 @@ GameManager.prototype.isGameTerminated = function () {
 
 // Set up the game
 GameManager.prototype.setup = function () {
-  this.grid        = new Grid(this.size, [{x: 2, y: 2}]);
+  this.grid        = new Grid(this.size, this.disabledCells);
 
   this.score       = 0;
   this.over        = false;
