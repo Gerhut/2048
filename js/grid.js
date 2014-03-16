@@ -1,7 +1,8 @@
-function Grid(size) {
+function Grid(size, disableCells) {
   this.size = size;
 
   this.cells = [];
+  this.disableCells = disableCells || []
 
   this.build();
 }
@@ -15,6 +16,13 @@ Grid.prototype.build = function () {
       row.push(null);
     }
   }
+};
+
+// Cell is disabled
+Grid.prototype.cellEnable = function (cell) {
+  return this.disableCells.every(function (disableCell) {
+    return disableCell.x !== cell.x || disableCell.y !== cell.y;
+  });
 };
 
 // Find the first available random position
@@ -42,7 +50,9 @@ Grid.prototype.availableCells = function () {
 Grid.prototype.eachCell = function (callback) {
   for (var x = 0; x < this.size; x++) {
     for (var y = 0; y < this.size; y++) {
-      callback(x, y, this.cells[x][y]);
+      if (this.cellEnable({x: x, y: y})) {
+        callback(x, y, this.cells[x][y]);
+      }
     }
   }
 };
@@ -54,7 +64,7 @@ Grid.prototype.cellsAvailable = function () {
 
 // Check if the specified cell is taken
 Grid.prototype.cellAvailable = function (cell) {
-  return !this.cellOccupied(cell);
+  return this.cellEnable(cell) && !this.cellOccupied(cell);
 };
 
 Grid.prototype.cellOccupied = function (cell) {

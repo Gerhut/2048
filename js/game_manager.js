@@ -35,7 +35,7 @@ GameManager.prototype.isGameTerminated = function () {
 
 // Set up the game
 GameManager.prototype.setup = function () {
-  this.grid        = new Grid(this.size);
+  this.grid        = new Grid(this.size, [{x: 2, y: 2}]);
 
   this.score       = 0;
   this.over        = false;
