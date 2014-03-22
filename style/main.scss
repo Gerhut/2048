@@ -170,8 +170,13 @@ hr {
 
 // Game field mixin used to render CSS at different width
 @mixin game-field {
-  .game-container {
+  .game-background {
     margin-top: 40px;
+    padding-top: 166px;
+    background: url('../meta/bg.jpg') bottom;
+    background-size: cover;
+  }
+  .game-container {
     position: relative;
     padding: $grid-spacing;
 

@@ -143,8 +143,13 @@ hr {
   100% {
     opacity: 1; } }
 
-.game-container {
+.game-background {
   margin-top: 40px;
+  padding-top: 166px;
+  background: url('../meta/bg.jpg') bottom;
+  background-size: cover; }
+
+.game-container {
   position: relative;
   padding: 15px;
   cursor: default;
@@ -526,8 +531,12 @@ hr {
     min-width: 40px; }
   .heading {
     margin-bottom: 10px; }
-  .game-container {
+  .game-background {
     margin-top: 40px;
+    padding-top: 166px;
+    background: url('../meta/bg.jpg') bottom;
+    background-size: cover; }
+  .game-container {
     position: relative;
     padding: 10px;
     cursor: default;
