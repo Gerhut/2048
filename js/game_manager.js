@@ -4,7 +4,12 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.scoreManager = new ScoreManager;
   this.actuator     = new Actuator;
 
-  this.startTiles   = 2;
+  this.startTiles   = [
+    [0, 16,  32,  0],
+    [0,  8,   0, 64],
+    [0,  4, 128,  0],
+    [0,  2,   0,  0]
+  ];
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -51,9 +56,15 @@ GameManager.prototype.setup = function () {
 
 // Set up the initial tiles to start the game with
 GameManager.prototype.addStartTiles = function () {
-  for (var i = 0; i < this.startTiles; i++) {
-    this.addRandomTile();
-  }
+  var grid = this.grid
+  this.startTiles.forEach(function (row, y) {
+    row.forEach(function (value, x) {
+      if (value === 0)
+        return;
+      var tile = new Tile({x: x, y: y}, value)
+      grid.insertTile(tile)
+    })
+  })
 };
 
 // Adds a tile in a random position
